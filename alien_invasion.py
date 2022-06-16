@@ -13,6 +13,11 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
+        # 全屏
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
+
         # 创建一个显示窗口，游戏的所有图形元素都将在其中绘制
         # display.set_mode 返回 surface 对象，表示整个窗口
         # self.screen = pygame.display.set_mode((1200, 800)) # 指定窗口大小
