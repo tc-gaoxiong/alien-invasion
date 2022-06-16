@@ -34,6 +34,7 @@ class AlienInvasion:
             self.ship.update()
             self._update_screen()
     
+    # 这是约定，以下划线开头表示该方法或变量仅供内部使用
     def _check_events(self):
         """响应按键和鼠标事件"""
         for event in pygame.event.get():

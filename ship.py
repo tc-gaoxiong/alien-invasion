@@ -28,13 +28,20 @@ class Ship:
 
     def update(self):
         """"根据移动标志调整飞船的位置"""
-        if self.moving_right:
+        # if self.moving_right:
+        #     self.x += self.settings.ship_speed
+        # if self.moving_left:
+        #     self.x -= self.settings.ship_speed
+
+        # 更新飞船而不是 rect 对象的 x 值
+        if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x += self.settings.ship_speed
-        if self.moving_left:
+        if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
-        
+
         # 根据 self.x 更新 rect 对象
         self.rect.x = self.x
+
 
     def blitme(self):
         """在指定位置绘制飞船"""
