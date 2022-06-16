@@ -17,7 +17,7 @@ class AlienInvasion:
         # display.set_mode 返回 surface 对象，表示整个窗口
         # self.screen = pygame.display.set_mode((1200, 800)) # 指定窗口大小
         self.screen = pygame.display.set_mode(
-            self.settings.screen_width, self.settings.screen_height
+            (self.settings.screen_width, self.settings.screen_height)
         )
 
         pygame.display.set_caption("Alien Invasion")
@@ -42,8 +42,8 @@ class AlienInvasion:
             # 让最近绘制的屏幕可见
             # pygame 每次循环都将绘制一个空屏幕，并擦去就屏幕，使得只有新屏幕可见
             pygame.display.flip()
-            
+
 if  __name__ == '__main__':
     # 创建游戏实例并运行游戏
-    ai = AlienInvasion
-    ai.run_game
+    ai = AlienInvasion()
+    ai.run_game()
