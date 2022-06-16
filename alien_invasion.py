@@ -95,8 +95,23 @@ class AlienInvasion:
     
     def _create_fleet(self):
         """创建外星人群"""
+        # 创建一个外星人
         alien = Alien(self)
-        self.aliens.add(alien)
+
+        # 计算一行可容纳多少外星人
+        # 外星人的宽度
+        alien_width = alien.rect.width
+        # 一行可用空间，两边各预留一个外星人的空间
+        available_space_x = self.settings.screen_width - (2 * alien_width)
+        number_aliens_x = available_space_x // (2 * alien_width)
+
+        # 创建第一行外星人
+        for alien_number in range(number_aliens_x):
+            alien = Alien(self)
+            # 通过设置 x 坐标将外星人加入当前行
+            alien.x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien.x
+            self.aliens.add(alien)
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
