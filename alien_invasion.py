@@ -93,13 +93,14 @@ class AlienInvasion:
                 self.bullets.remove(bullet)
         # print(len(self.bullets))
 
-    def _create_alien(self, alien_number):
+    def _create_alien(self, alien_number, row_number):
         """创建一个外星人并将其放在当前行"""
         alien = Alien(self)
-        alien_width = alien.rect.width
+        alien_width, alien_height = alien.rect.size
         # 通过设置 x 坐标将外星人加入当前行
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
+        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
     
     def _create_fleet(self):
@@ -107,16 +108,21 @@ class AlienInvasion:
         # 创建一个外星人
         alien = Alien(self)
 
+        alien_width, alien_height = alien.rect.size
         # 计算一行可容纳多少外星人
-        # 外星人的宽度
-        alien_width = alien.rect.width
         # 一行可用空间，两边各预留一个外星人的空间
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
+        # 计算屏幕可容纳多少行外星人
+        ship_height = self.ship.rect.height
+        avaliable_space_y = (self.settings.screen_height - (3 * alien_height) - ship_height)
+        number_rows = avaliable_space_y // (2 * alien_height)
 
-        # 创建第一行外星人
-        for alien_number in range(number_aliens_x):
-            self._create_alien(alien_number)
+        # 创建外星人群
+        for row_number in range(number_rows):
+            # 创建第一行外星人
+            for alien_number in range(number_aliens_x):
+                self._create_alien(alien_number, row_number)
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
