@@ -43,6 +43,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             self._update_screen()
     
     # 这是约定，以下划线开头表示该方法或变量仅供内部使用
@@ -123,6 +124,10 @@ class AlienInvasion:
             # 创建第一行外星人
             for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row_number)
+    
+    def _update_aliens(self):
+        """更新外星人群中所有外星人的位置"""
+        self.aliens.update()
 
     def _update_screen(self):
         """更新屏幕上的图像，并切换到新屏幕"""
