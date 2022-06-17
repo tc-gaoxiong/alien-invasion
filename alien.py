@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Alien(Sprite):
     """表示单个外星人的类"""
 
@@ -20,7 +21,7 @@ class Alien(Sprite):
 
         # 存储外星人的精确水平位置
         self.x = float(self.rect.x)
-    
+
     def update(self):
         """向右/左移动外星人"""
         self.x += (self.settings.alien_speed * self.settings.fleet_direction)
